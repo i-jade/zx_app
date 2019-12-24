@@ -78,7 +78,7 @@ class _IpSettingPageState extends State<IpSettingPage> {
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
-                  color: Color.fromARGB(255, 9, 132, 227), // 设为透明色
+                  color: Color(0xFF337ab7), // 设为透明色
                   child: Text(
                     "确      认",
                     style: TextStyle(
@@ -99,7 +99,7 @@ class _IpSettingPageState extends State<IpSettingPage> {
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
-                  color: Color.fromARGB(255, 9, 132, 227), // 设为透明色
+                  color: Color(0xFF5bc0de), // 设为透明色
                   child: Text(
                     "测      试",
                     style: TextStyle(
