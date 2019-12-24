@@ -5,15 +5,25 @@ import 'package:flutter/services.dart';
 
 import './pages/login_page.dart';
 import './pages/login_page2.dart';
+import './routers/routes.dart';
+import './Application.dart';
 
-//
+//第三方插件
+import 'package:fluro/fluro.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  
+
+    final router = Router();
+    Routes.ConfigureRoutes(router);
+    Application.router = router ;
+    
+
+
      if (Platform.isAndroid) {
       SystemUiOverlayStyle systemUiOverlayStyle =
       SystemUiOverlayStyle(statusBarColor: Colors.transparent);
@@ -25,7 +35,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: LoginPage2(),
     );
   }
 }

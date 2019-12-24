@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../Application.dart';
 
 class LoginPage2 extends StatefulWidget {
   LoginPage2({Key key}) : super(key: key);
@@ -21,10 +22,11 @@ class _LoginPage2State extends State<LoginPage2> {
           circle(Color.fromARGB(255, 9, 132, 227), -1250, -540, 2160, 2160),
           logo(),
           //circle(Colors.blue[200], -100, -150, 900, 850),rgba(9, 132, 227,1.0)rgba(9, 132, 227,1.0)
-          username(),
-          password(),
-          //nameandpassword(),
-          button(),
+          // username(),
+          // password(),
+          // nameandpassword(),
+          // button(),
+          allThing(),
           setting(),
         ],
       ),
@@ -110,17 +112,11 @@ class _LoginPage2State extends State<LoginPage2> {
       child: Container(
         width: ScreenUtil().setWidth(850),
         height: ScreenUtil().setHeight(150),
-        // decoration: BoxDecoration(
-        //     // border:
-        //     //     Border.all(color: Colors.grey, width: ScreenUtil().setWidth(2)),
-        //     borderRadius: BorderRadius.circular(ScreenUtil().setWidth(80))),
-
         child: TextFormField(
           key: registerFormKey,
           decoration: InputDecoration(
             //icon: Icon(Icons.account_circle),
             labelText: "密  码",
-            //border: InputBorder.none,
           ),
           onSaved: (value) {
             this.userName = value;
@@ -141,8 +137,8 @@ class _LoginPage2State extends State<LoginPage2> {
         top: ScreenUtil().setHeight(1500),
         left: ScreenUtil().setWidth((1080 - 400) / 2),
         child: Container(
-          width: ScreenUtil().setWidth(400),
-          height: ScreenUtil().setHeight(120),
+          width: ScreenUtil().setWidth(420),
+          height: ScreenUtil().setHeight(130),
           child: RaisedButton(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -150,7 +146,9 @@ class _LoginPage2State extends State<LoginPage2> {
             child: Text(
               "登       录",
               style: TextStyle(
-                  fontSize: ScreenUtil().setSp(50), color: Colors.white,fontWeight: FontWeight.normal),
+                  fontSize: ScreenUtil().setSp(50),
+                  color: Colors.white,
+                  fontWeight: FontWeight.normal),
               textAlign: TextAlign.center,
             ),
             onPressed: registerForm,
@@ -160,10 +158,19 @@ class _LoginPage2State extends State<LoginPage2> {
 
   Widget setting() {
     return Positioned(
-      bottom: ScreenUtil().setHeight(50),
-      right: ScreenUtil().setWidth(80),
-      child: Icon(Icons.settings,color: Colors.black54,size: 30,),
-    );
+        bottom: ScreenUtil().setHeight(50),
+        right: ScreenUtil().setWidth(80),
+        child: InkWell(
+          onTap: () {
+            Application.router.navigateTo(context,"/ipPage");
+            print("我即将跳转");
+          },
+          child: Icon(
+            Icons.settings,
+            color: Colors.black54,
+            size: 30,
+          ),
+        ));
   }
 
   void registerForm() {
@@ -174,48 +181,119 @@ class _LoginPage2State extends State<LoginPage2> {
 
   Widget nameandpassword() {
     return Positioned(
-      top: ScreenUtil().setHeight(1000),
-      left: ScreenUtil().setWidth((1080 - 850) / 2),
-      child: Container(
-        width: ScreenUtil().setWidth(850),
-        //height: ScreenUtil().setHeight(650),
-        child: Form(
-          key: registerFormKey,
+        top: ScreenUtil().setHeight(1000),
+        left: ScreenUtil().setWidth((1080 - 850) / 2),
+        child: SingleChildScrollView(
+          child: Container(
+            width: ScreenUtil().setWidth(850),
+            height: ScreenUtil().setHeight(500),
+            child: Form(
+              key: registerFormKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: "请输入用户名",
+                    ),
+                    onSaved: (value) {
+                      this.userName = value;
+                    },
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "账号不能为空";
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(labelText: "密码"),
+                    obscureText: true,
+                    //keyboardType: TextInputType.visiblePassword,
+                    onSaved: (value) {
+                      this.userPassWord = value;
+                    },
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "密码不能为空";
+                      }
+                      return null;
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ));
+  }
+
+  //使用Column测试问题
+  Widget allThing() {
+    return Positioned(
+        top: ScreenUtil().setHeight(950),
+        left: ScreenUtil().setWidth((1080 - 850) / 2),
+        child: Container(
+          width: ScreenUtil().setWidth(850),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "请输入用户名",
+              Form(
+                key: registerFormKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: "请输入用户名",
+                      ),
+                      onSaved: (value) {
+                        this.userName = value;
+                      },
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "账号不能为空";
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(labelText: "密码"),
+                      obscureText: true,
+                      //keyboardType: TextInputType.visiblePassword,
+                      onSaved: (value) {
+                        this.userPassWord = value;
+                      },
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "密码不能为空";
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
                 ),
-                onSaved: (value) {
-                  this.userName = value;
-                },
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return "账号不能为空";
-                  }
-                  return null;
-                },
               ),
-              TextFormField(
-                decoration: InputDecoration(labelText: "密码"),
-                obscureText: true,
-                //keyboardType: TextInputType.visiblePassword,
-                onSaved: (value) {
-                  this.userPassWord = value;
-                },
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return "密码不能为空";
-                  }
-                  return null;
-                },
-              ),
+              Container(
+                width: ScreenUtil().setWidth(850 / 2),
+                height: ScreenUtil().setHeight(110),
+                margin: EdgeInsets.only(top: ScreenUtil().setHeight(70)),
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5)),
+                  color: Color.fromARGB(255, 9, 132, 227), // 设为透明色
+                  child: Text(
+                    "登       录",
+                    style: TextStyle(
+                        fontSize: ScreenUtil().setSp(50),
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal),
+                    textAlign: TextAlign.center,
+                  ),
+                  onPressed: registerForm,
+                ),
+              )
             ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
