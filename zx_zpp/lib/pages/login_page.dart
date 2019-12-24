@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../widgets/waver.dart';
+import './login_page2.dart';
 
 //第三方插件
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,6 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   void registerForm() {
     registerFormKey.currentState.save();
     print("这是来自登录的数据: username:$userName , password:$passWord");
+    Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage2()));
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 
 import './pages/login_page.dart';
+import './pages/login_page2.dart';
 
 //
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
     }
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
