@@ -6,6 +6,9 @@ class Routes{
   static String root = '/';
   static String loginPage = '/loginPage';
   static String ipAddressPage = '/ipPage';
+  static String homePage = '/homePage';
+  static String indexPage = '/indexPage';
+  static String procedurePage = '/procedurePage';
 
   static void ConfigureRoutes(Router router){
     router.notFoundHandler = new Handler(
@@ -16,6 +19,9 @@ class Routes{
 
     router.define(loginPage,handler: loginPageHandler);
     router.define(ipAddressPage,handler: ipAddressHandler);
+    router.define(homePage,handler: homePageHandler);
+    router.define(indexPage,handler: indexPageHandler);
+    router.define(procedurePage,handler: procedurePageHandler);
   }
 
   

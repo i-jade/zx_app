@@ -177,8 +177,12 @@ class _LoginPage2State extends State<LoginPage2> {
     registerFormKey.currentState.save();
     registerFormKey.currentState.validate();
     //等待验证账号
-    
-    print("这是来自登录的数据: username:$userName , password:$userPassWord");
+    // if(!userName.isEmpty  && !userPassWord.isEmpty){
+    //    print("这是来自登录的数据: username:$userName , password:$userPassWord");
+    //   Application.router.navigateTo(context,"/indexPage");
+    // }
+    Application.router.navigateTo(context,"/indexPage");
+   
   }
 
   Widget nameandpassword() {

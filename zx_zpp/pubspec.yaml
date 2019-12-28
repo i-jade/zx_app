@@ -23,6 +23,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   font_awesome_flutter: ^8.5.0
   fluro:  ^1.5.1
+  webview_flutter: ^0.3.18+1
 
 dev_dependencies:
   flutter_test:
