@@ -9,6 +9,7 @@ class Routes{
   static String homePage = '/homePage';
   static String indexPage = '/indexPage';
   static String procedurePage = '/procedurePage';
+  static String startPage= '/startPage';
 
   static void ConfigureRoutes(Router router){
     router.notFoundHandler = new Handler(
@@ -22,6 +23,7 @@ class Routes{
     router.define(homePage,handler: homePageHandler);
     router.define(indexPage,handler: indexPageHandler);
     router.define(procedurePage,handler: procedurePageHandler);
+    router.define(startPage,handler: testHandler);
   }
 
   

@@ -82,48 +82,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      // child: Container(
-      //   margin: EdgeInsets.only(top: ScreenUtil().setHeight(100)),
-      //   width: ScreenUtil().setWidth(1080),
-      //   height: ScreenUtil().setHeight(600),
-      //   decoration: BoxDecoration(
-      //     image: DecorationImage(
-      //       image: AssetImage(
-      //         './assets/image/homeScr.png',
-      //       ),
-      //       fit: BoxFit.cover,
-      //     ),
-      //   ),
-      //   child: Column(
-      //     children: <Widget>[
-      //       Container(
-      //         height: ScreenUtil().setHeight(100),
-      //         decoration: BoxDecoration(
-      //           gradient: LinearGradient(
-      //             colors: [
-      //               Colors.blue[600],
-      //               Color.fromRGBO(255, 255, 255, 0.0),
-      //             ],
-      //             begin: Alignment.topCenter,
-      //             end: Alignment.bottomCenter,
-      //           ),
-      //         ),
-      //       ),
-      //       Container(
-      //         decoration: BoxDecoration(
-      //           gradient: LinearGradient(
-      //             colors: [
-      //               Colors.blue[600],
-      //               Color.fromRGBO(255, 255, 255, 0.0),
-      //             ],
-      //             begin: Alignment.topCenter,
-      //             end: Alignment.bottomCenter,
-      //           ),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 
@@ -167,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                   width: ScreenUtil().setWidth(60),
                 ),
                 MyCard(
-                    "./assets/image/shangwei.png", "上位机画面", openProcedureMenu),
+                    "./assets/image/test.png", "测试", opneStartPage),
               ],
             ),
           ],
@@ -216,5 +174,9 @@ class _HomePageState extends State<HomePage> {
 
   void openProcedureMenu() {
     Application.router.navigateTo(context, "procedurePage");
+  }
+
+  void opneStartPage(){
+    Application.router.navigateTo(context, 'startPage');
   }
 }

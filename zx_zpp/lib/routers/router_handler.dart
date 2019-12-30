@@ -4,6 +4,7 @@ import '../pages/login_page2.dart';
 import '../pages/ipsetting_page.dart';
 import '../pages/home_page/home_page1.dart';
 import '../pages/procedure/procedure.dart';
+import '../pages/demo/start_demo.dart';
 
 import '../index_page.dart';
 
@@ -38,5 +39,12 @@ Handler indexPageHandler = Handler(
 Handler procedurePageHandler = Handler(
   handlerFunc: (BuildContext context , Map<String,List<String>> params){
     return ProcedurePage();
+  }
+);
+
+
+Handler testHandler = Handler(
+  handlerFunc: (BuildContext context , Map<String,List<String>> params){
+    return Start();
   }
 );
