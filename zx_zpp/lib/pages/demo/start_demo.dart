@@ -1,16 +1,25 @@
+
 import 'package:flutter/material.dart';
+import 'package:provide/provide.dart';
+import '../../provide/theme.dart';
+import '../../widgets/theme_list.dart';
 
 class Start extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Home(),
-      theme: ThemeData(
-        primaryColor: Colors.yellow,
-        highlightColor: Color.fromRGBO(255, 255, 255, 0.5),
-        splashColor: Colors.white,
-      ),
+    return Provide<ThemeProvide>(
+      builder: (context, child, themeProvide) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Home(),
+          theme: themeProvide.themeData,
+          // ThemeData(
+          //   primaryColor: themeProvide.themeData,
+          //   highlightColor: Color.fromRGBO(255, 255, 255, 0.5),
+          //   splashColor: Colors.white,
+          // ),
+        );
+      },
     );
   }
 }
@@ -72,31 +81,52 @@ class Home extends StatelessWidget {
                 //   ),
                 // ),
                 UserAccountsDrawerHeader(
-                  accountName: Text('Flutter',style: TextStyle(fontWeight: FontWeight.bold),),
-                  accountEmail: Text('flutter@flutter.com'),
-                  currentAccountPicture:CircleAvatar(
-                    backgroundImage: NetworkImage('https://i.loli.net/2019/12/30/eazhA5X6l8NJfHU.jpg'),
-                  ) ,
-                  decoration: BoxDecoration(
-                    color: Colors.yellow[400],
-                    image: DecorationImage(
-                      image: NetworkImage('https://i.loli.net/2019/12/30/dvJehZqyAOMTt7R.jpg'),
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(
-                        Colors.yellow[400].withOpacity(0.6),
-                        BlendMode.color
-                      )
-
-                    )
+                  accountName: Text(
+                    'Flutter',
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
+                  accountEmail: Text('flutter@flutter.com'),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://i.loli.net/2019/12/30/eazhA5X6l8NJfHU.jpg'),
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.yellow[400],
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              'https://i.loli.net/2019/12/30/dvJehZqyAOMTt7R.jpg'),
+                          fit: BoxFit.cover,
+                          colorFilter: ColorFilter.mode(
+                              Colors.yellow[400].withOpacity(0.6),
+                              BlendMode.color))),
                 ),
                 ListTile(
-                  title: Text(
-                    "Welcome",
-                    textAlign: TextAlign.right,
+                    title: Text(
+                      "Welcome",
+                      textAlign: TextAlign.right,
+                    ),
+                    trailing: Icon(Icons.web),
+                    onTap: null),
+                ListTile(
+                    title: Text(
+                      "Theme",
+                      textAlign: TextAlign.right,
+                    ),
+                    trailing: Icon(Icons.theaters),
+                    onTap: () {
+                     showDialog(
+                       context: context,
+                       builder: (context){
+                          return Container(
+                            width: 200,
+                            height: 200,
+                            color: Colors.white,
+                          );
+                       }
+
+                     );
+                    }
                   ),
-                  trailing: Icon(Icons.web),
-                ),
                 ListTile(
                   title: Text(
                     "Hello",
@@ -110,7 +140,7 @@ class Home extends StatelessWidget {
                     textAlign: TextAlign.right,
                   ),
                   trailing: Icon(Icons.flag),
-                  onTap: ()=>Navigator.pop(context),
+                  onTap: () => Navigator.pop(context),
                 )
               ],
             ),
@@ -136,6 +166,8 @@ class Home extends StatelessWidget {
           ),
         ));
   }
+
+  
   //使用tab
   // tab ， tabview ， tabController
 }
