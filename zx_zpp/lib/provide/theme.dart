@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 
 class ThemeProvide with ChangeNotifier{
-  ThemeData _themeData = ThemeData(primaryColor: Colors.blue);//主题
+  ThemeData _themeData = ThemeData(
+    primaryColor: Colors.blue,
+  );//主题
   //int _colorIndex = 2 ; // 主题颜色索引 
 
   void changeThemeData( ThemeData themeData){

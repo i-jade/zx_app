@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 import '../../provide/theme.dart';
 import '../../widgets/theme_list.dart';
@@ -114,19 +114,34 @@ class Home extends StatelessWidget {
                     ),
                     trailing: Icon(Icons.theaters),
                     onTap: () {
-                     showDialog(
-                       context: context,
-                       builder: (context){
-                          return Container(
-                            width: 200,
-                            height: 200,
-                            color: Colors.white,
-                          );
-                       }
-
-                     );
-                    }
-                  ),
+                      showModalBottomSheet(
+                          context: context,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          builder: (BuildContext context) {
+                            return Container(
+                                height: ScreenUtil().setHeight(700),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Container(
+                                      margin: EdgeInsets.only(
+                                        top: ScreenUtil().setHeight(20),
+                                        left: ScreenUtil().setWidth(60),
+                                      ),
+                                      child: Text(
+                                        "请选择主题颜色",
+                                        style:
+                                            Theme.of(context).textTheme.title,
+                                      ),
+                                    ),
+                                    //rSizedBox(height: ScreenUtil().setHeight(10),),
+                                    themeList(context),
+                                  ],
+                                ));
+                          });
+                    }),
                 ListTile(
                   title: Text(
                     "Hello",
@@ -167,7 +182,6 @@ class Home extends StatelessWidget {
         ));
   }
 
-  
   //使用tab
   // tab ， tabview ， tabController
 }

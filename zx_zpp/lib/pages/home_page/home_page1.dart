@@ -120,32 +120,8 @@ class _HomeState extends State<Home> {
               onPressed: () => print("you clicked Search"),
             ),
           ],
-          // bottom: TabBar(
-          //   // 使用底部标签
-          //   unselectedLabelColor: Colors.black45, //未选中label的颜色
-          //   indicatorColor: Colors.black54, //指示器的颜色
-          //   indicatorSize: TabBarIndicatorSize.label, // 指示器的大小
-          //   tabs: <Widget>[
-          //     Tab(
-          //       icon: Icon(Icons.local_florist),
-          //     ),
-          //     Tab(
-          //       icon: Icon(Icons.change_history),
-          //     ),
-          //     Tab(
-          //       icon: Icon(Icons.directions_bike),
-          //     )
-          //   ],
-          // ),
         ),
         backgroundColor: Colors.grey[100], // 整体背景颜色
-        // body: TabBarView(
-        //   children: <Widget>[
-        //     Icon(Icons.local_florist, size: 128, color: Colors.black12),
-        //     Icon(Icons.change_history, size: 128, color: Colors.black12),
-        //     Icon(Icons.directions_bike, size: 128, color: Colors.black12),
-        //   ],
-        // ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentINdex,
           onTap: _onTabHandler,

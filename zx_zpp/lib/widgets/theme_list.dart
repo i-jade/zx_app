@@ -3,79 +3,60 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../provide/theme.dart';
 import 'package:provide/provide.dart';
 
-class ThemeList extends StatelessWidget {
-  const ThemeList({Key key}) : super(key: key);
+Widget themeList(BuildContext context) {
+  return Container(
+    margin: EdgeInsets.only(
+        left: ScreenUtil().setWidth(60),
+        right: ScreenUtil().setWidth(60),
+        top: ScreenUtil().setHeight(60)),
+    width: ScreenUtil().setWidth(1080),
+    height: ScreenUtil().setHeight(350),
+    //color: Colors.blue,
+    child: Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            themeItem(Color.fromRGBO(0, 245, 255, 1.0), context),
+            themeItem(Colors.red, context),
+            themeItem(Colors.yellow, context),
+            themeItem(Colors.pink, context),
+            themeItem(Colors.purple, context),
+            themeItem(Colors.blue[100], context),
+          ],
+        ),
+        SizedBox(
+          height: ScreenUtil().setHeight(60),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            themeItem(Colors.deepPurple, context),
+            themeItem(Colors.green, context),
+            themeItem(Colors.red[200], context),
+            themeItem(Colors.blue, context),
+            themeItem(Colors.blue[900], context),
+            themeItem(Colors.yellow[700], context),
+          ],
+        ),
+      ],
+    ),
+  );
+}
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(
-          left: ScreenUtil().setWidth(60),
-          right: ScreenUtil().setWidth(60),
-          top: ScreenUtil().setHeight(60)),
-          width: ScreenUtil().setWidth(100),
-          height: ScreenUtil().setHeight(200),
-          color: Colors.white,
-      child: Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              themeItem(Color.fromRGBO(0, 245, 255, 1.0), context),
-              SizedBox(
-                width: ScreenUtil().setWidth(30),
-              ),
-              themeItem(Colors.red, context),
-              SizedBox(
-                width: ScreenUtil().setWidth(30),
-              ),
-              themeItem(Colors.yellow, context),
-              SizedBox(
-                width: ScreenUtil().setWidth(30),
-              ),
-              themeItem(Colors.pink, context),
-              SizedBox(
-                width: ScreenUtil().setWidth(30),
-              ),
-              themeItem(Colors.purple, context),
-              SizedBox(
-                width: ScreenUtil().setWidth(30),
-              ),
-            ],
-          ),
-          SizedBox(height: ScreenUtil().setHeight(60),),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              themeItem(Colors.deepPurple, context),
-              SizedBox(
-                width: ScreenUtil().setWidth(30),
-              ),
-              themeItem(Colors.green, context),
-              SizedBox(
-                width: ScreenUtil().setWidth(30),
-              ),
-              themeItem(Colors.orange, context),
-              SizedBox(
-                width: ScreenUtil().setWidth(30),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget themeItem(color,context) {
-    return GestureDetector(
-      onTap: () {
-        Provide.value<ThemeProvide>(context)
-            .changeThemeData(ThemeData(primaryColor: color));
-      },
-      child: Container(
+Widget themeItem(color, context) {
+  return GestureDetector(
+    onTap: () {
+      Provide.value<ThemeProvide>(context)
+          .changeThemeData(ThemeData(primaryColor: color));
+    },
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
         color: color,
-        height: ScreenUtil().setHeight(50),
-        width: ScreenUtil().setHeight(50),
       ),
-    );
-  }
+      height: ScreenUtil().setHeight(135),
+      width: ScreenUtil().setWidth((1080-120-170)/6),
+    ),
+  );
 }
