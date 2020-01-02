@@ -5,6 +5,7 @@ import '../pages/ipsetting_page.dart';
 import '../pages/home_page/home_page1.dart';
 import '../pages/procedure/procedure.dart';
 import '../pages/demo/start_demo.dart';
+import '../pages/scan_page./scan_page.dart';
 
 import '../index_page.dart';
 
@@ -46,5 +47,11 @@ Handler procedurePageHandler = Handler(
 Handler testHandler = Handler(
   handlerFunc: (BuildContext context , Map<String,List<String>> params){
     return Start();
+  }
+);
+
+Handler scanHandler = Handler(
+  handlerFunc: (BuildContext context , Map<String,List<String>> params){
+    return RScanDialog();
   }
 );

@@ -120,8 +120,8 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                MyCard(
-                    "./assets/image/scanner.png", "扫一扫", opneStartPage, color),
+                 MyCard(
+                    "./assets/image/scanner.png", "扫一扫", openScanPage, color),
                 SizedBox(
                   width: ScreenUtil().setWidth(60),
                 ),
@@ -185,5 +185,9 @@ class _HomePageState extends State<HomePage> {
 
   void opneStartPage() {
     Application.router.navigateTo(context, 'startPage');
+  }
+
+  void openScanPage() {
+    Application.router.navigateTo(context, 'scanPage');
   }
 }
