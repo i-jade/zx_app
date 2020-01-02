@@ -9,9 +9,10 @@ class Start extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provide<ThemeProvide>(
       builder: (context, child, themeProvide) {
+        Color color = Provide.value<ThemeProvide>(context).themeColor;
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Home(),
+          home: Home(color),
           theme: themeProvide.themeData,
           // ThemeData(
           //   primaryColor: themeProvide.themeData,
@@ -25,6 +26,8 @@ class Start extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
+  Color _color ;
+  Home(this._color);
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -91,14 +94,15 @@ class Home extends StatelessWidget {
                         'https://i.loli.net/2019/12/30/eazhA5X6l8NJfHU.jpg'),
                   ),
                   decoration: BoxDecoration(
-                      color: Colors.yellow[400],
+                      color: _color,
                       image: DecorationImage(
                           image: NetworkImage(
                               'https://i.loli.net/2019/12/30/dvJehZqyAOMTt7R.jpg'),
                           fit: BoxFit.cover,
                           colorFilter: ColorFilter.mode(
-                              Colors.yellow[400].withOpacity(0.6),
-                              BlendMode.color))),
+                              _color.withOpacity(0.6),
+                              //Colors.yellow[400].withOpacity(0.6),
+                              BlendMode.hardLight))),
                 ),
                 ListTile(
                     title: Text(
@@ -106,7 +110,17 @@ class Home extends StatelessWidget {
                       textAlign: TextAlign.right,
                     ),
                     trailing: Icon(Icons.web),
-                    onTap: null),
+                    onTap: null
+                ),
+                ListTile(
+
+                  title: Text(
+                    "Scan",
+                    textAlign: TextAlign.right,
+                  ),
+                  trailing: Icon(Icons.scanner),
+                  onTap: ()=>print("你点击了scanner"),//进入扫一扫page
+                ),
                 ListTile(
                     title: Text(
                       "Theme",

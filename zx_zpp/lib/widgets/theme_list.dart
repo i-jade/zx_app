@@ -48,7 +48,7 @@ Widget themeItem(color, context) {
   return GestureDetector(
     onTap: () {
       Provide.value<ThemeProvide>(context)
-          .changeThemeData(ThemeData(primaryColor: color));
+          .changeThemeData(ThemeData(primaryColor: color,highlightColor: Colors.grey[100]),color,Theme.of(context).textTheme.title.color);
     },
     child: Container(
       decoration: BoxDecoration(

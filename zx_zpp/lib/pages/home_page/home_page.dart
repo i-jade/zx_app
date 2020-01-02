@@ -3,6 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../widgets/browser.dart';
 import '../../Application.dart';
+import '../../provide/theme.dart';
+
+import 'package:provide/provide.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -14,44 +17,43 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        highlightColor: Color.fromRGBO(255, 255, 255, 0.5), //高亮的颜色
-        splashColor: Colors.white70, // 水波纹的颜色
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {
-              print("在首页点击了MENU");
-            },
-          ),
-          centerTitle: true, // 标题居中
-          title: Text("移动管控平台"),
-          elevation: 0.0, // 阴影
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.search),
-              tooltip: 'Search',
-              onPressed: () => print("you clicked Search"),
+    return Provide<ThemeProvide>(builder: (context, child, themeProvide) {
+      Color _color = Provide.value<ThemeProvide>(context).themeColor;
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: themeProvide.themeData,
+        home: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.menu),
+              onPressed: () {
+                print("在首页点击了MENU");
+              },
             ),
-          ],
+            centerTitle: true, // 标题居中
+            title: Text("移动管控平台"),
+            elevation: 0.0, // 阴影
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.search),
+                tooltip: 'Search',
+                onPressed: () => print("you clicked Search"),
+              ),
+            ],
+          ),
+          backgroundColor: Colors.grey[100], // 整体背景颜色
+          body: Column(
+            children: <Widget>[
+              homeScr(_color),
+              body(_color),
+            ],
+          ),
         ),
-        backgroundColor: Colors.grey[100], // 整体背景颜色
-        body: Column(
-          children: <Widget>[
-            homeScr(),
-            body(),
-          ],
-        ),
-      ),
-    );
+      );
+    });
   }
 
-  Widget homeScr() {
+  Widget homeScr(color) {
     return Container(
       width: ScreenUtil().setWidth(1080),
       height: ScreenUtil().setHeight(650),
@@ -71,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Colors.blue,
+                    color,
                     Color.fromRGBO(255, 255, 255, 0.0),
                   ],
                   begin: Alignment.topCenter,
@@ -85,7 +87,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget body() {
+  Widget body(color) {
     return Container(
         margin: EdgeInsets.only(
             left: ScreenUtil().setWidth(60),
@@ -98,16 +100,18 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                MyCard("./assets/image/monitor.png", "监控视频", openProcedure),
-                SizedBox(
-                  width: ScreenUtil().setWidth(60),
-                ),
-                MyCard("./assets/image/setting.png", "设置", openProcedure),
+                MyCard(
+                    "./assets/image/monitor.png", "监控视频", openProcedure, color),
                 SizedBox(
                   width: ScreenUtil().setWidth(60),
                 ),
                 MyCard(
-                    "./assets/image/shangwei.png", "上位机画面", openProcedureMenu),
+                    "./assets/image/setting.png", "设置", openProcedure, color),
+                SizedBox(
+                  width: ScreenUtil().setWidth(60),
+                ),
+                MyCard("./assets/image/shangwei.png", "上位机画面",
+                    openProcedureMenu, color),
               ],
             ),
             SizedBox(
@@ -116,51 +120,54 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                MyCard("./assets/image/monitor.png", "监控视频", openProcedure),
-                SizedBox(
-                  width: ScreenUtil().setWidth(60),
-                ),
-                MyCard("./assets/image/setting.png", "设置", openProcedure),
+                MyCard(
+                    "./assets/image/scanner.png", "扫一扫", opneStartPage, color),
                 SizedBox(
                   width: ScreenUtil().setWidth(60),
                 ),
                 MyCard(
-                    "./assets/image/test.png", "测试", opneStartPage),
+                    "./assets/image/setting.png", "设置", openProcedure, color),
+                SizedBox(
+                  width: ScreenUtil().setWidth(60),
+                ),
+                MyCard("./assets/image/test.png", "测试", opneStartPage, color),
               ],
             ),
           ],
         ));
   }
 
-  Widget MyCard(imageUrl, title, Function onTap) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
+  Widget MyCard(imageUrl, title, Function onTap, color) {
+    return Container(
         width: ScreenUtil().setWidth(280),
         height: ScreenUtil().setHeight(280),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           color: Colors.white,
         ),
-        child: Container(
-          margin: EdgeInsets.all(ScreenUtil().setWidth(20)),
-          child: Column(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
-                width: ScreenUtil().setWidth(100),
-                height: ScreenUtil().setHeight(100),
-                child: Image.asset(imageUrl),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
-                child: Text(title),
-              )
-            ],
+        child: InkWell(
+          onTap: onTap,
+          child: Container(
+            margin: EdgeInsets.all(ScreenUtil().setWidth(20)),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+                  width: ScreenUtil().setWidth(120),
+                  height: ScreenUtil().setHeight(120),
+                  child: Image.asset(
+                    imageUrl,
+                    color: color,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+                  child: Text(title),
+                )
+              ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   void openProcedure() {
@@ -176,7 +183,7 @@ class _HomePageState extends State<HomePage> {
     Application.router.navigateTo(context, "procedurePage");
   }
 
-  void opneStartPage(){
+  void opneStartPage() {
     Application.router.navigateTo(context, 'startPage');
   }
 }
