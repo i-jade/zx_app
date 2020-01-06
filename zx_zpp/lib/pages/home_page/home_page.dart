@@ -149,14 +149,14 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           padding: EdgeInsets.only(top: ScreenUtil().setHeight(15)),
           width: ScreenUtil().setWidth(280),
-          height: ScreenUtil().setHeight(280),
+          height: ScreenUtil().setWidth(280),
           color: Colors.transparent,
           child: Column(
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
                 width: ScreenUtil().setWidth(120),
-                height: ScreenUtil().setHeight(120),
+                height: ScreenUtil().setWidth(120),
                 child: Image.asset(
                   imageUrl,
                   color: color,

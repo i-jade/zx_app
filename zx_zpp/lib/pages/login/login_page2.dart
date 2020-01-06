@@ -15,7 +15,14 @@ class _LoginPage2State extends State<LoginPage2> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 1080, height: 2358)..init(context);
+    ScreenUtil.instance = ScreenUtil(width: 1080, height: 2358,allowFontScaling: false)..init(context);
+    print('设备宽度:${ScreenUtil.screenWidth}'); //Device width
+    print('设备高度:${ScreenUtil.screenHeight}'); //Device height
+    print('设备的像素密度:${ScreenUtil.pixelRatio}'); //Device pixel density
+    print(
+        '底部安全区距离:${ScreenUtil.bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
+    print(
+        '状态栏高度:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
     return Scaffold(
       body: Stack(
         children: <Widget>[

@@ -7,7 +7,6 @@ import 'package:provide/provide.dart';
 import './line_card.dart';
 import '../../Application.dart';
 
-
 class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -41,10 +40,10 @@ class SettingPage extends StatelessWidget {
           margin: EdgeInsets.only(
               left: ScreenUtil().setWidth(20),
               right: ScreenUtil().setWidth(20)),
-          height: ScreenUtil().setHeight(130),
+          height: ScreenUtil().setHeight(155),
           decoration: BoxDecoration(
             //color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(30),
           ),
           child: Container(
             decoration: BoxDecoration(
@@ -52,37 +51,38 @@ class SettingPage extends StatelessWidget {
               bottom: BorderSide(
                   width: ScreenUtil().setHeight(2), color: Colors.grey[200]),
             )),
-            child: lineCard("主题", "./assets/image/themes.png", 85, 0, 4,
-                  color, true, true, true,context),
+            child: lineCard("主题", "./assets/image/themes.png", 85, 0, 4, color,
+                true, true, true, context),
           ),
         ),
         SizedBox(
           height: ScreenUtil().setHeight(40),
         ),
-        Container(
-          width: double.infinity,
-          height: ScreenUtil().setHeight(130 * 4 + 8),
-          margin: EdgeInsets.only(
-              left: ScreenUtil().setWidth(20),
-              right: ScreenUtil().setWidth(20)),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            children: <Widget>[
-              lineCard("帮助", "./assets/image/question.png", 85, 0, 0,
-                  color, true, true, false,context),
-              lineCard("修改密码", "./assets/image/password.png", 75, 5,
-                  1, color, true, false, false,context),
-              lineCard("检查更新", "./assets/image/update.png", 85, 0, 2,
-                  color, true, false, false,context),
-              lineCard("退出登录", "./assets/image/exit.png", 75, 10, 3,
-                  color, true, false, true,context),
-            ],
-          ),
-        ),
+        line(155,"帮助", "./assets/image/question.png", 85, 0, 0, color,
+              true, true, false, context),
+        line(155,"修改密码", "./assets/image/password.png", 75, 5, 1,
+              color, true, false, false, context),
+        line(155,"检查更新", "./assets/image/update.png", 85, 0, 2, color,
+              true, false, false, context),
+        line(155,"退出登录", "./assets/image/exit.png", 75, 10, 3, color, true,
+          false, true, context),
       ],
+    );
+  }
+
+  Widget line(lineWidth , text, iconUrl, iconWidth, iconPadding, route, color,
+    haveRightIcon, haveTop, haveBottom, context) {
+    return Container(
+      width: double.infinity,
+      height: ScreenUtil().setHeight(lineWidth),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(20), right: ScreenUtil().setWidth(20)),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: lineCard(text, iconUrl, iconWidth, iconPadding, route, color,
+    haveRightIcon, haveTop, haveBottom, context),
     );
   }
 
@@ -99,9 +99,7 @@ class SettingPage extends StatelessWidget {
     print("you clicked exit");
   }
 
-  void changePassword() {
-    
-  }
+  void changePassword() {}
 
   Future openSheme(context) {
     return showModalBottomSheet(
@@ -119,7 +117,7 @@ class SettingPage extends StatelessWidget {
       width: ScreenUtil().setWidth(1080),
       height: ScreenUtil().setHeight(500),
       color: color,
-      margin: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
+      margin: EdgeInsets.only(top: ScreenUtil().setHeight(100)),
       child: Row(
         children: <Widget>[
           GestureDetector(
@@ -138,7 +136,7 @@ class SettingPage extends StatelessWidget {
                     left: ScreenUtil().setWidth(80),
                     top: ScreenUtil().setHeight(100)),
                 child: Container(
-                  width: ScreenUtil().setWidth(200),
+                  width: ScreenUtil().setHeight(200),
                   height: ScreenUtil().setHeight(200),
                   decoration: BoxDecoration(
                       borderRadius:
@@ -152,10 +150,10 @@ class SettingPage extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(
               left: ScreenUtil().setWidth(50),
-              top: ScreenUtil().setHeight(100),
+              top: ScreenUtil().setHeight(120),
             ),
             width: ScreenUtil().setWidth(600),
-            height: ScreenUtil().setHeight(180),
+            height: ScreenUtil().setWidth(180),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

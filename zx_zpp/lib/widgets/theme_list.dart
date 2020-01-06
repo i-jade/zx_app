@@ -10,7 +10,7 @@ Widget themeList(BuildContext context) {
         right: ScreenUtil().setWidth(60),
         top: ScreenUtil().setHeight(60)),
     width: ScreenUtil().setWidth(1080),
-    height: ScreenUtil().setHeight(350),
+    height: ScreenUtil().setWidth(350),
     //color: Colors.blue,
     child: Column(
       children: <Widget>[
@@ -55,7 +55,7 @@ Widget themeItem(color, context) {
         borderRadius: BorderRadius.circular(5),
         color: color,
       ),
-      height: ScreenUtil().setHeight(135),
+      height: ScreenUtil().setWidth(135),
       width: ScreenUtil().setWidth((1080-120-170)/6),
     ),
   );

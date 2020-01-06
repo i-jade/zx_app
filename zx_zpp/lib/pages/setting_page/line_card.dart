@@ -20,11 +20,11 @@ Widget lineCard(text, iconUrl, iconWidth, iconPadding, route, color,
     decoration: BoxDecoration(
         border: Border(
       bottom:
-          BorderSide(width: ScreenUtil().setHeight(2), color: Colors.grey[200]),
+          BorderSide(width: ScreenUtil().setHeight(3), color: Colors.grey[200]),
     )),
     child: Material(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(ScreenUtil().setWidth(20.0)),
       ),
       child: RaisedButton(
           elevation: 0.0,
@@ -35,8 +35,8 @@ Widget lineCard(text, iconUrl, iconWidth, iconPadding, route, color,
           highlightColor: Colors.grey[300],
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
-            top: haveTop ? Radius.circular(20) : Radius.zero,
-            bottom: haveBottom ? Radius.circular(20) : Radius.zero,
+            top: haveTop ? Radius.circular(ScreenUtil().setWidth(30.0)) : Radius.zero,
+            bottom: haveBottom ? Radius.circular(ScreenUtil().setWidth(30.0)) : Radius.zero,
           )),
           onPressed: () {
             print(route);
