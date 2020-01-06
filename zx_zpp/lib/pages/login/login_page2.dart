@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../Application.dart';
+import '../../Application.dart';
 
 class LoginPage2 extends StatefulWidget {
   LoginPage2({Key key}) : super(key: key);
@@ -21,11 +21,6 @@ class _LoginPage2State extends State<LoginPage2> {
         children: <Widget>[
           circle(Color.fromARGB(255, 9, 132, 227), -1250, -540, 2160, 2160),
           logo(),
-          //circle(Colors.blue[200], -100, -150, 900, 850),rgba(9, 132, 227,1.0)rgba(9, 132, 227,1.0)
-          // username(),
-          // password(),
-          // nameandpassword(),
-          // button(),
           allThing(),
           setting(),
         ],
@@ -75,86 +70,6 @@ class _LoginPage2State extends State<LoginPage2> {
         ));
   }
 
-  Widget username() {
-    return Positioned(
-      top: ScreenUtil().setHeight(1000),
-      right: ScreenUtil().setWidth(115),
-      child: Container(
-        width: ScreenUtil().setWidth(850),
-        height: ScreenUtil().setHeight(150),
-        child: Padding(
-          padding: EdgeInsets.only(left: ScreenUtil().setWidth(0)),
-          child: TextFormField(
-            decoration: InputDecoration(
-              //icon: Icon(Icons.account_circle),
-              labelText: "用户名",
-              //border: InputBorder.none,
-            ),
-            onSaved: (value) {
-              this.userName = value;
-            },
-            validator: (value) {
-              if (value.isEmpty) {
-                return "用户名不能为空";
-              }
-              return null;
-            },
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget password() {
-    return Positioned(
-      top: ScreenUtil().setHeight(1220),
-      right: ScreenUtil().setWidth(115),
-      child: Container(
-        width: ScreenUtil().setWidth(850),
-        height: ScreenUtil().setHeight(150),
-        child: TextFormField(
-          key: registerFormKey,
-          decoration: InputDecoration(
-            //icon: Icon(Icons.account_circle),
-            labelText: "密  码",
-          ),
-          onSaved: (value) {
-            this.userName = value;
-          },
-          validator: (value) {
-            if (value.isEmpty) {
-              return "密码不能为空";
-            }
-            return null;
-          },
-        ),
-      ),
-    );
-  }
-
-  Widget button() {
-    return Positioned(
-        top: ScreenUtil().setHeight(1500),
-        left: ScreenUtil().setWidth((1080 - 400) / 2),
-        child: Container(
-          width: ScreenUtil().setWidth(420),
-          height: ScreenUtil().setHeight(130),
-          child: RaisedButton(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            color: Color.fromARGB(255, 9, 132, 227), // 设为透明色
-            child: Text(
-              "登       录",
-              style: TextStyle(
-                  fontSize: ScreenUtil().setSp(50),
-                  color: Colors.white,
-                  fontWeight: FontWeight.normal),
-              textAlign: TextAlign.center,
-            ),
-            onPressed: registerForm,
-          ),
-        ));
-  }
 
   Widget setting() {
     return Positioned(
@@ -181,56 +96,8 @@ class _LoginPage2State extends State<LoginPage2> {
     //    print("这是来自登录的数据: username:$userName , password:$userPassWord");
     //   Application.router.navigateTo(context,"/indexPage");
     // }
-    Application.router.navigateTo(context,"/indexPage");
+    Application.router.navigateTo(context,"/indexPage",clearStack: true);
    
-  }
-
-  Widget nameandpassword() {
-    return Positioned(
-        top: ScreenUtil().setHeight(1000),
-        left: ScreenUtil().setWidth((1080 - 850) / 2),
-        child: SingleChildScrollView(
-          child: Container(
-            width: ScreenUtil().setWidth(850),
-            height: ScreenUtil().setHeight(500),
-            child: Form(
-              key: registerFormKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: "请输入用户名",
-                    ),
-                    onSaved: (value) {
-                      this.userName = value;
-                    },
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return "账号不能为空";
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(labelText: "密码"),
-                    obscureText: true,
-                    //keyboardType: TextInputType.visiblePassword,
-                    onSaved: (value) {
-                      this.userPassWord = value;
-                    },
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return "密码不能为空";
-                      }
-                      return null;
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ));
   }
 
   //使用Column测试问题

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../widgets/waver.dart';
+import '../../widgets/waver.dart';
 import './login_page2.dart';
 
 //第三方插件

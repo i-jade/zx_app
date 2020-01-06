@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../pages/login_page2.dart';
+import '../pages/login/login_page2.dart';
 import '../pages/ipsetting_page.dart';
 import '../pages/home_page/home_page1.dart';
 import '../pages/procedure/procedure.dart';
 import '../pages/demo/start_demo.dart';
 import '../pages/scan_page./scan_page.dart';
+import '../pages/equipment/equipment_information.dart';
+import '../pages/login/change_password.dart';
 
 import '../index_page.dart';
 
@@ -53,5 +55,17 @@ Handler testHandler = Handler(
 Handler scanHandler = Handler(
   handlerFunc: (BuildContext context , Map<String,List<String>> params){
     return RScanDialog();
+  }
+);
+
+Handler equipmentInformationHandler = Handler(
+  handlerFunc: (BuildContext context , Map<String,List<String>> params){
+    return EquipmentInformationPage();
+  }
+);
+
+Handler changePasswordHandler = Handler(
+  handlerFunc: (BuildContext context , Map<String,List<String>> params){
+    return ChangePasswordPage();
   }
 );

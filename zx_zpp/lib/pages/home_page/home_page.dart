@@ -120,13 +120,13 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                 MyCard(
+                MyCard(
                     "./assets/image/scanner.png", "扫一扫", openScanPage, color),
                 SizedBox(
                   width: ScreenUtil().setWidth(60),
                 ),
                 MyCard(
-                    "./assets/image/setting.png", "设置", openProcedure, color),
+                    "./assets/image/information.png", "设备资料", openEquipInfoPage, color),
                 SizedBox(
                   width: ScreenUtil().setWidth(60),
                 ),
@@ -137,37 +137,72 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
+
+  //This is a question
   Widget MyCard(imageUrl, title, Function onTap, color) {
-    return Container(
-        width: ScreenUtil().setWidth(280),
-        height: ScreenUtil().setHeight(280),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-          color: Colors.white,
-        ),
-        child: InkWell(
-          onTap: onTap,
-          child: Container(
-            margin: EdgeInsets.all(ScreenUtil().setWidth(20)),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
-                  width: ScreenUtil().setWidth(120),
-                  height: ScreenUtil().setHeight(120),
-                  child: Image.asset(
-                    imageUrl,
-                    color: color,
-                  ),
+    return Material(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(25),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(25),
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.only(top: ScreenUtil().setHeight(15)),
+          width: ScreenUtil().setWidth(280),
+          height: ScreenUtil().setHeight(280),
+          color: Colors.transparent,
+          child: Column(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+                width: ScreenUtil().setWidth(120),
+                height: ScreenUtil().setHeight(120),
+                child: Image.asset(
+                  imageUrl,
+                  color: color,
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
-                  child: Text(title),
-                )
-              ],
-            ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+                child: Text(title),
+              )
+            ],
           ),
-        ));
+        ),
+      ),
+    );
+
+    // return Container(
+    //     width: ScreenUtil().setWidth(280),
+    //     height: ScreenUtil().setHeight(280),
+    //     decoration: BoxDecoration(
+    //       borderRadius: BorderRadius.circular(25),
+    //       //color: Colors.white,
+    //     ),
+    //     child: InkWell(
+    //       onTap: onTap,
+    //       child: Container(
+    //         color: Colors.transparent,
+    //         margin: EdgeInsets.all(ScreenUtil().setWidth(20)),
+    //         child: Column(
+    //           children: <Widget>[
+    //             Container(
+    //               margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+    //               width: ScreenUtil().setWidth(120),
+    //               height: ScreenUtil().setHeight(120),
+    //               child: Image.asset(
+    //                 imageUrl,
+    //                 color: color,
+    //               ),
+    //             ),
+    //             Container(
+    //               margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+    //               child: Text(title),
+    //             )
+    //           ],
+    //         ),
+    //       ),
+    //     ));
   }
 
   void openProcedure() {
@@ -189,5 +224,9 @@ class _HomePageState extends State<HomePage> {
 
   void openScanPage() {
     Application.router.navigateTo(context, 'scanPage');
+  }
+
+  void openEquipInfoPage(){
+    Application.router.navigateTo(context, 'equipInfo');
   }
 }

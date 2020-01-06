@@ -11,6 +11,8 @@ class Routes{
   static String procedurePage = '/procedurePage';
   static String startPage= '/startPage';
   static String scanPage='/scanPage';
+  static String equipInfoPage = '/equipInfo';
+  static String changPasswordPage='/changPassword';
 
   static void ConfigureRoutes(Router router){
     router.notFoundHandler = new Handler(
@@ -26,6 +28,8 @@ class Routes{
     router.define(procedurePage,handler: procedurePageHandler);
     router.define(startPage,handler: testHandler);
     router.define(scanPage,handler: scanHandler);
+    router.define(equipInfoPage,handler: equipmentInformationHandler);
+    router.define(changPasswordPage,handler: changePasswordHandler);
   }
 
   

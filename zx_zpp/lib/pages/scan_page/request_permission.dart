@@ -35,3 +35,4 @@ Future<bool> canOpenCamera() async {
     }
     return true;
   }
+

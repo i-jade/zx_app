@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 
-
-import './pages/login_page.dart';
-import './pages/login_page2.dart';
+import './pages/login/login_page2.dart';
 import './routers/routes.dart';
 import './Application.dart';
 import './provide/theme.dart';
