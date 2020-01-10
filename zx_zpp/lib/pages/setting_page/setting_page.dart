@@ -5,6 +5,7 @@ import '../../provide/theme.dart';
 import '../../widgets/choose_photo.dart';
 import 'package:provide/provide.dart';
 import './line_card.dart';
+import '../../provide/user.dart';
 import '../../Application.dart';
 
 class SettingPage extends StatelessWidget {
@@ -12,10 +13,7 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provide<ThemeProvide>(builder: (context, child, themeProvide) {
       Color _color = Provide.value<ThemeProvide>(context).themeColor;
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: themeProvide.themeData,
-        home: Scaffold(
+      return  Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             centerTitle: false, // 标题居中
@@ -24,7 +22,6 @@ class SettingPage extends StatelessWidget {
           ),
           backgroundColor: Colors.grey[200], // 整体背景颜色
           body: body(context, _color),
-        ),
       );
     });
   }
@@ -141,10 +138,12 @@ class SettingPage extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius:
                           BorderRadius.circular(ScreenUtil().setWidth(30)),
-                      image: DecorationImage(
+                      image:DecorationImage(
                         image: AssetImage("./assets/12.png"),
                         fit: BoxFit.cover,
-                      )),
+                      )
+                      ),
+                  child:Provide.value<UserProvider>(context).userImage,
                 )),
           ),
           Container(

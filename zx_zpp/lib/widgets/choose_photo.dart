@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:image_picker/image_picker.dart';
-import './cropImage.dart';
+import './crop_image.dart';
 
 class ChosePhoto extends StatelessWidget {
   const ChosePhoto({Key key}) : super(key: key);
@@ -142,8 +142,8 @@ class ChosePhoto extends StatelessWidget {
   }
 
   void cropImage(File originalImage, context) async {
-    String result = await Navigator.push(context,
-        MaterialPageRoute(builder: (context) => CropImageRoute(originalImage)));
+    String result = await Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => SecondPage(originalImage)));
     if (result.isEmpty) {
       print('上传失败');
     } else {
@@ -156,4 +156,20 @@ class ChosePhoto extends StatelessWidget {
       // });
     }
   }
+
+  // void cropImage(File originalImage, context) async {
+  //   String result = await Navigator.push(context,
+  //       MaterialPageRoute(builder: (context) => CropImageRoute(originalImage)));
+  //   if (result.isEmpty) {
+  //     print('上传失败');
+  //   } else {
+  //     print(result);
+  //     //result是图片上传后拿到的url
+  //     // setState(() {
+  //     //   iconUrl = result;
+  //     //   print('上传成功：$iconUrl');
+  //     //   _upgradeRemoteInfo();//后续数据处理，这里是更新头像信息
+  //     // });
+  //   }
+  // }
 }

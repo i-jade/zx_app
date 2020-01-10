@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../Application.dart';
+import 'package:dio/dio.dart';
+import 'package:oktoast/oktoast.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoginPage2 extends StatefulWidget {
   LoginPage2({Key key}) : super(key: key);
@@ -12,17 +15,20 @@ class LoginPage2 extends StatefulWidget {
 class _LoginPage2State extends State<LoginPage2> {
   final registerFormKey = GlobalKey<FormState>();
   String userName, userPassWord;
+  bool isbusy = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    isbusy = false;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 1080, height: 2358,allowFontScaling: false)..init(context);
-    print('设备宽度:${ScreenUtil.screenWidth}'); //Device width
-    print('设备高度:${ScreenUtil.screenHeight}'); //Device height
-    print('设备的像素密度:${ScreenUtil.pixelRatio}'); //Device pixel density
-    print(
-        '底部安全区距离:${ScreenUtil.bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
-    print(
-        '状态栏高度:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
+    ScreenUtil.instance =
+        ScreenUtil(width: 1080, height: 2358, allowFontScaling: false)
+          ..init(context);
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -30,6 +36,11 @@ class _LoginPage2State extends State<LoginPage2> {
           logo(),
           allThing(),
           setting(),
+          isbusy
+              ? _loadingContainer
+              : Container(
+                  child: null,
+                )
         ],
       ),
     );
@@ -77,14 +88,13 @@ class _LoginPage2State extends State<LoginPage2> {
         ));
   }
 
-
   Widget setting() {
     return Positioned(
         bottom: ScreenUtil().setHeight(50),
         right: ScreenUtil().setWidth(80),
         child: InkWell(
           onTap: () {
-            Application.router.navigateTo(context,"/ipPage");
+            Application.router.navigateTo(context, "/ipPage");
             print("我即将跳转");
           },
           child: Icon(
@@ -96,15 +106,48 @@ class _LoginPage2State extends State<LoginPage2> {
   }
 
   void registerForm() {
+    FocusScope.of(context).requestFocus(FocusNode());
     registerFormKey.currentState.save();
     registerFormKey.currentState.validate();
     //等待验证账号
-    // if(!userName.isEmpty  && !userPassWord.isEmpty){
-    //    print("这是来自登录的数据: username:$userName , password:$userPassWord");
-    //   Application.router.navigateTo(context,"/indexPage");
-    // }
-    Application.router.navigateTo(context,"/indexPage",clearStack: true);
-   
+    if (!userName.isEmpty && !userPassWord.isEmpty) {
+      if(userName == "1"){
+        Application.router.navigateTo(context,"/indexPage",clearStack: true);
+      }
+      setState(() {
+        isbusy =true ;
+      });
+      print("这是来自登录的数据: username:$userName , password:$userPassWord");
+      getHttp(userName, userPassWord).then((val) {
+        setState(() {
+            isbusy = false ;
+          });
+        print(val['data']['name']);
+        if (val['data']['name']) {
+          Application.router.navigateTo(context, "/indexPage");
+        } else {
+          showToast("账号和密码错误，请重试");
+          print("登录失败，请重试");
+          userPassWord = '';
+          registerFormKey.currentState.reset();
+        }
+      });
+    }
+    //Application.router.navigateTo(context,"/indexPage",clearStack: true);
+  }
+
+  Future getHttp(user, password) async {
+    try {
+      Response response;
+      var data = {'name': user, 'password': password};
+      response = await Dio().get(
+          "http://192.168.137.1:7300/mock/5e1871e45f790c4fdc9cf739/zxauto/login",
+          queryParameters: data);
+      //print(response.data);
+      return response.data;
+    } catch (e) {
+      return print(e);
+    }
   }
 
   //使用Column测试问题
@@ -176,4 +219,17 @@ class _LoginPage2State extends State<LoginPage2> {
           ),
         ));
   }
+
+  final _loadingContainer = Container(
+      constraints: BoxConstraints.expand(),
+      color: Colors.black12,
+      child: Center(
+        child: Opacity(
+          opacity: 0.9,
+          child: SpinKitWave(
+            color: Colors.blue,
+            size: 50.0,
+          ),
+        ),
+      ));
 }

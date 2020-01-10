@@ -29,6 +29,11 @@ dependencies:
   permission_handler: ^4.0.0 
   image_picker: ^0.6.2+3
   image_crop: ^0.3.2
+  extended_image: any
+  image_editor: ^0.1.5
+  dio: ^3.0.8
+  oktoast: ^2.3.0
+  flutter_spinkit: ^4.1.1+1
 
 dev_dependencies:
   flutter_test:
