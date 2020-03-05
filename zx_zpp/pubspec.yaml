@@ -34,6 +34,8 @@ dependencies:
   dio: ^3.0.8
   oktoast: ^2.3.0
   flutter_spinkit: ^4.1.1+1
+  flutter_ijkplayer: ^0.3.5+1
+
 
 dev_dependencies:
   flutter_test:
@@ -46,4 +48,5 @@ flutter:
     - assets/
     - assets/image/
     - assets/equipment_image/
+    - assets/html_file/
   

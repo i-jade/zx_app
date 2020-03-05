@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zx_zpp/widgets/video_brower.dart';
+import 'dart:async';
 
 import '../../widgets/browser.dart';
 import '../../Application.dart';
 import '../../provide/theme.dart';
+import '../../widgets/video_brower.dart';
+
 
 import 'package:provide/provide.dart';
 
@@ -15,6 +19,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  @override
+  void initState() { 
+    super.initState();
+    //这是一个定时任务
+    Timer(
+      Duration(seconds: 3),
+      (){print("This is a test");}
+    );
+    Timer.periodic(
+      Duration(seconds: 3), 
+      (timer){print("这是来自定时任务的");}
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Provide<ThemeProvide>(builder: (context, child, themeProvide) {
@@ -101,7 +120,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 MyCard(
-                    "./assets/image/monitor.png", "监控视频", openProcedure, color),
+                    "./assets/image/monitor.png", "监控视频", openVideo, color),
                 SizedBox(
                   width: ScreenUtil().setWidth(60),
                 ),
@@ -214,6 +233,12 @@ class _HomePageState extends State<HomePage> {
     }));
   }
 
+  void openVideo(){
+    Application.router.navigateTo(context, "videoPlayer");
+  }
+
+
+
   void openProcedureMenu() {
     Application.router.navigateTo(context, "procedurePage");
   }
@@ -222,7 +247,9 @@ class _HomePageState extends State<HomePage> {
     Application.router.navigateTo(context, 'startPage');
   }
 
-  void openScanPage() {
+  Future openScanPage() async{
+    // String cameraScanResult = await scanner.scan();
+    // print(cameraScanResult);
     Application.router.navigateTo(context, 'scanPage');
   }
 

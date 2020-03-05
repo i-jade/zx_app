@@ -13,6 +13,7 @@ class Routes{
   static String scanPage='/scanPage';
   static String equipInfoPage = '/equipInfo';
   static String changPasswordPage='/changPassword';
+  static String videoPlayerPage = '/videoPlayer';
 
   static void ConfigureRoutes(Router router){
     router.notFoundHandler = new Handler(
@@ -30,6 +31,7 @@ class Routes{
     router.define(scanPage,handler: scanHandler);
     router.define(equipInfoPage,handler: equipmentInformationHandler);
     router.define(changPasswordPage,handler: changePasswordHandler);
+    router.define(videoPlayerPage,handler: videoPlayerHandler);
   }
 
   
