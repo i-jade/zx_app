@@ -166,7 +166,7 @@ class _MyAppState extends State<MyApp> {
 
   static void _configureSelectNotificationSubject(context) {
     selectNotificationSubject.stream.listen((String payload) async {
-      await Application.router.navigateTo(context,"/indexPage",clearStack: true);
+      await Application.router.navigateTo(context,"/messagePage",clearStack: true);
     });
   }
 

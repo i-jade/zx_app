@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
+import 'package:badges/badges.dart';
 
 import './pages/home_page/home_page.dart';
 import './pages/setting_page/setting_page.dart';
@@ -15,13 +16,16 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   final List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
-        icon:Icon(Icons.home),
+        icon:Icon(Icons.home,size: ScreenUtil().setHeight(80),),
         title: Text('主页')),
     BottomNavigationBarItem(
-        icon: Icon(Icons.chat_bubble_outline),
+        icon: Badge(
+          badgeContent: Text("6"),
+          child: Icon(Icons.chat_bubble_outline,size: ScreenUtil().setHeight(80),),
+        ),
         title: Text('消息')),
     BottomNavigationBarItem(
-        icon: Icon(Icons.person_outline),
+        icon: Icon(Icons.person_outline,size: ScreenUtil().setHeight(80),),
         title: Text('我')),
   ];
   final List tabBodies = [

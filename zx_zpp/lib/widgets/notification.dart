@@ -13,7 +13,7 @@ class NotificationForAll{
     var platformChannelSpecifics = NotificationDetails(
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
-        1, '爱心通知', '你的小宝贝肖胜男已经上线，点击查看', platformChannelSpecifics,
+        1, '上线通知', '你已经打开移动管控APP,点击查看消息', platformChannelSpecifics,
         payload: 'item x');
   }
 
