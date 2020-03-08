@@ -9,6 +9,8 @@ import '../pages/scan_page./scan_page.dart';
 import '../pages/equipment/equipment_information.dart';
 import '../pages/login/change_password.dart';
 import '../widgets/video_player.dart';
+import '../pages/message_page/message_page.dart';
+
 
 import '../index_page.dart';
 
@@ -75,5 +77,11 @@ Handler changePasswordHandler = Handler(
 Handler videoPlayerHandler = Handler(
   handlerFunc: (BuildContext context , Map<String,List<String>> params){
     return VideoPlayer();
+  }
+);
+
+Handler messageHandler = Handler(
+  handlerFunc: (BuildContext context , Map<String,List<String>> params){
+    return MessagePage();
   }
 );

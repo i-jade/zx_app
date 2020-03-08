@@ -9,6 +9,7 @@ import '../../provide/user.dart';
 import '../../Application.dart';
 
 class SettingPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Provide<ThemeProvide>(builder: (context, child, themeProvide) {

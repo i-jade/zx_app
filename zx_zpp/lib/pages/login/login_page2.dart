@@ -5,6 +5,8 @@ import 'package:dio/dio.dart';
 import "dart:async";
 import 'package:oktoast/oktoast.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import '../../widgets/notification.dart';
+
 
 class LoginPage2 extends StatefulWidget {
   LoginPage2({Key key}) : super(key: key);
@@ -94,7 +96,7 @@ class _LoginPage2State extends State<LoginPage2> {
         bottom: ScreenUtil().setHeight(50),
         right: ScreenUtil().setWidth(80),
         child: InkWell(
-          onTap: () {
+          onTap: () async {
             Application.router.navigateTo(context, "/ipPage");
             print("我即将跳转");
           },
@@ -106,23 +108,25 @@ class _LoginPage2State extends State<LoginPage2> {
         ));
   }
 
-  void registerForm() {
+  void registerForm() async {
     FocusScope.of(context).requestFocus(FocusNode());
     registerFormKey.currentState.save();
     registerFormKey.currentState.validate();
     //等待验证账号
     if (!userName.isEmpty && !userPassWord.isEmpty) {
-      if(userName == "1"){
-        Application.router.navigateTo(context,"/indexPage",clearStack: true);
+      if (userName == "1") {
+        
+        NotificationForAll.showNotification();
+        Application.router.navigateTo(context, "/indexPage", clearStack: true);
       }
       setState(() {
-        isbusy =true ;
+        isbusy = true;
       });
       print("这是来自登录的数据: username:$userName , password:$userPassWord");
       getHttp(userName, userPassWord).then((val) {
         setState(() {
-            isbusy = false ;
-          });
+          isbusy = false;
+        });
         print(val['data']['name']);
         if (val['data']['name']) {
           Application.router.navigateTo(context, "/indexPage");

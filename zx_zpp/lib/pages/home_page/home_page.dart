@@ -29,8 +29,8 @@ class _HomePageState extends State<HomePage> {
       (){print("This is a test");}
     );
     Timer.periodic(
-      Duration(seconds: 3), 
-      (timer){print("这是来自定时任务的");}
+      Duration(seconds: 3),  // 定时
+      (timer){print("这是来自定时任务的");} //回调函数
     );
   }
 
