@@ -24,14 +24,14 @@ class _HomePageState extends State<HomePage> {
   void initState() { 
     super.initState();
     //这是一个定时任务
-    Timer(
-      Duration(seconds: 3),
-      (){print("This is a test");}
-    );
-    Timer.periodic(
-      Duration(seconds: 3),  // 定时
-      (timer){print("这是来自定时任务的");} //回调函数
-    );
+    // Timer(
+    //   Duration(seconds: 3),
+    //   (){print("This is a test");}
+    // );
+    // Timer.periodic(
+    //   Duration(seconds: 3),  // 定时
+    //   (timer){print("这是来自定时任务的");} //回调函数
+    // );
   }
 
   @override
@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
   //This is a question
   Widget MyCard(imageUrl, title, Function onTap, color) {
     return Material(
-      color: Colors.white,
+      color: Colors.grey[50],
       borderRadius: BorderRadius.circular(25),
       child: InkWell(
         borderRadius: BorderRadius.circular(25),

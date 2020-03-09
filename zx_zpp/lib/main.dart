@@ -8,6 +8,7 @@ import './Application.dart';
 import './provide/theme.dart';
 import './provide/user.dart';
 import './widgets/notification.dart';
+import './config/service_method.dart';
 
 import 'package:provide/provide.dart';
 import 'package:oktoast/oktoast.dart';
@@ -64,6 +65,7 @@ void main() async{
     selectNotificationSubject.add(payload);
   });
 
+  NetUtils.init();
   var themeProvide = ThemeProvide();
   var userProvide = UserProvider();
   var providers = Providers();

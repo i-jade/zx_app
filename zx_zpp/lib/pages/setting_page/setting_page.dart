@@ -32,24 +32,24 @@ class SettingPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         heardImage(context, color),
-        SizedBox(
-          height: ScreenUtil().setHeight(40),
-        ),
+        // SizedBox(
+        //   height: ScreenUtil().setHeight(40),
+        // ),
         Container(
-          margin: EdgeInsets.only(
-              left: ScreenUtil().setWidth(20),
-              right: ScreenUtil().setWidth(20)),
+          // margin: EdgeInsets.only(
+          //     left: ScreenUtil().setWidth(20),
+          //     right: ScreenUtil().setWidth(20)),
           height: ScreenUtil().setHeight(155),
-          decoration: BoxDecoration(
-            //color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
-          ),
+          // decoration: BoxDecoration(
+          //   //color: Colors.white,
+          //   borderRadius: BorderRadius.circular(30),
+          // ),
           child: Container(
-            decoration: BoxDecoration(
-                border: Border(
-              bottom: BorderSide(
-                  width: ScreenUtil().setHeight(2), color: Colors.grey[200]),
-            )),
+            // decoration: BoxDecoration(
+            //     border: Border(
+            //   bottom: BorderSide(
+            //       width: ScreenUtil().setHeight(2), color: Colors.grey[200]),
+            // )),
             child: lineCard("主题", "./assets/image/themes.png", 85, 0, 4, color,
                 true, true, true, context),
           ),
@@ -74,12 +74,11 @@ class SettingPage extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: ScreenUtil().setHeight(lineWidth),
-      margin: EdgeInsets.only(
-          left: ScreenUtil().setWidth(20), right: ScreenUtil().setWidth(20)),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-      ),
+      //margin: EdgeInsets.only(left: ScreenUtil().setWidth(20), right: ScreenUtil().setWidth(20)),
+      // decoration: BoxDecoration(
+      //   color: Colors.white,
+      //   borderRadius: BorderRadius.circular(30),
+      // ),
       child: lineCard(text, iconUrl, iconWidth, iconPadding, route, color,
           haveRightIcon, haveTop, haveBottom, context),
     );

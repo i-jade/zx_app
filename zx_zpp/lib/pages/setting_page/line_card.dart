@@ -17,33 +17,20 @@ import '../../widgets/image_decor.dart';
 Widget lineCard(text, iconUrl, iconWidth, iconPadding, route, color,
     haveRightIcon, haveTop, haveBottom, context) {
   return Container(
-    decoration: BoxDecoration(
-        border: Border(
-      bottom:
-          BorderSide(width: ScreenUtil().setHeight(3), color: Colors.grey[200]),
-    )),
     child: Material(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(ScreenUtil().setWidth(20.0)),
-      ),
       child: RaisedButton(
           elevation: 0.0,
           highlightElevation: 0.0,
           disabledElevation: 0.0,
-          color: Colors.white,
+          color: Colors.grey[50],
           splashColor: Colors.grey,
           highlightColor: Colors.grey[300],
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-            top: haveTop ? Radius.circular(ScreenUtil().setWidth(30.0)) : Radius.zero,
-            bottom: haveBottom ? Radius.circular(ScreenUtil().setWidth(30.0)) : Radius.zero,
-          )),
           onPressed: () {
             print(route);
-            if(route == 1 ){
-              Application.router.navigateTo(context,"/changPassword",clearStack: false);
-            }
-            else if (route == 3) {
+            if (route == 1) {
+              Application.router
+                  .navigateTo(context, "/changPassword", clearStack: false);
+            } else if (route == 3) {
               Application.router
                   .navigateTo(context, "/loginPage", clearStack: true);
             } else {
@@ -61,12 +48,12 @@ Widget lineCard(text, iconUrl, iconWidth, iconPadding, route, color,
             }
           },
           child: Container(
-            height: ScreenUtil().setHeight(130),
+            height: ScreenUtil().setHeight(155),
             width: ScreenUtil().setWidth(1060),
             child: Stack(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(40)),
                   child: Row(
                     children: <Widget>[
                       iconsWithUrl(iconUrl, iconWidth, iconPadding, color),
@@ -84,7 +71,7 @@ Widget lineCard(text, iconUrl, iconWidth, iconPadding, route, color,
                 ),
                 haveRightIcon
                     ? Positioned(
-                        top: ScreenUtil().setHeight(20),
+                        top: ScreenUtil().setHeight(40),
                         right: ScreenUtil().setWidth(0),
                         child: Icon(
                           Icons.keyboard_arrow_right,
@@ -92,7 +79,18 @@ Widget lineCard(text, iconUrl, iconWidth, iconPadding, route, color,
                           size: ScreenUtil().setSp(100),
                         ),
                       )
-                    : null
+                    : null,
+                Positioned(
+                    top: ScreenUtil().setHeight(153),
+                    right: ScreenUtil().setWidth(0),
+                    child: Container(
+                      height: ScreenUtil().setHeight(2),
+                      width: ScreenUtil().setWidth(900),
+                      child: Divider(
+                        color: Colors.grey[200],
+                        height: ScreenUtil().setHeight(2),
+                      ),
+                    ))
               ],
             ),
           )),

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zx_zpp/config/service_method.dart';
 import '../../Application.dart';
+
 import 'package:dio/dio.dart';
 import "dart:async";
 import 'package:oktoast/oktoast.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../widgets/notification.dart';
+import '../../config/service_url.dart';
 
 
 class LoginPage2 extends StatefulWidget {
@@ -22,7 +25,6 @@ class _LoginPage2State extends State<LoginPage2> {
 
   @override
   void initState() {
-    // TODO: implement initState
     isbusy = false;
     super.initState();
   }
@@ -115,7 +117,6 @@ class _LoginPage2State extends State<LoginPage2> {
     //等待验证账号
     if (!userName.isEmpty && !userPassWord.isEmpty) {
       if (userName == "1") {
-        
         NotificationForAll.showNotification();
         Application.router.navigateTo(context, "/indexPage", clearStack: true);
       }
@@ -123,13 +124,13 @@ class _LoginPage2State extends State<LoginPage2> {
         isbusy = true;
       });
       print("这是来自登录的数据: username:$userName , password:$userPassWord");
-      getHttp(userName, userPassWord).then((val) {
+      NetUtils.login(userName, userPassWord).then((val) {
         setState(() {
           isbusy = false;
         });
-        print(val['data']['name']);
-        if (val['data']['name']) {
-          Application.router.navigateTo(context, "/indexPage");
+        //数据返回的data中的login为true或者false
+        if (val['data']['login']) {
+          Application.router.navigateTo(context, "/indexPage",clearStack: true);
         } else {
           showToast("账号和密码错误，请重试");
           print("登录失败，请重试");
@@ -137,21 +138,6 @@ class _LoginPage2State extends State<LoginPage2> {
           registerFormKey.currentState.reset();
         }
       });
-    }
-    //Application.router.navigateTo(context,"/indexPage",clearStack: true);
-  }
-
-  Future getHttp(user, password) async {
-    try {
-      Response response;
-      var data = {'name': user, 'password': password};
-      response = await Dio().get(
-          "http://192.168.137.1:7300/mock/5e1871e45f790c4fdc9cf739/zxauto/login",
-          queryParameters: data);
-      //print(response.data);
-      return response.data;
-    } catch (e) {
-      return print(e);
     }
   }
 

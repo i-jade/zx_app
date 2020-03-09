@@ -20,7 +20,7 @@ class _IndexPageState extends State<IndexPage> {
         title: Text('主页')),
     BottomNavigationBarItem(
         icon: Badge(
-          badgeContent: Text("6"),
+          badgeContent: Text("5"),
           child: Icon(Icons.chat_bubble_outline,size: ScreenUtil().setHeight(80),),
         ),
         title: Text('消息')),
